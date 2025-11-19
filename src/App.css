@@ -1,0 +1,262 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.input-section {
+  margin-bottom: 2rem;
+}
+
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  resize: vertical;
+  min-height: 150px;
+  margin-bottom: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 18px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin: 5px;
+}
+
+button:hover:not(:disabled) {
+  background-color: #45a049;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.character-wrapper {
+  display: inline-block;
+  position: relative;
+  margin: 2px;
+  vertical-align: top;
+  height: 30px; /* Fixed height to prevent layout shifts */
+}
+
+.character {
+  display: inline-block;
+  font-size: 24px;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  min-width: 30px;
+  text-align: center;
+  position: relative;
+  z-index: 1; /* Ensure character is above tooltips */
+}
+
+.character:hover {
+  background-color: #f0f0f0;
+}
+
+.hover-info {
+  position: absolute;
+  bottom: calc(40% + 21px); /* Position above the reveal button (16px button height + 5px gap) */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  z-index: 102; /* Higher than reveal button */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  margin-bottom: 0;
+  min-width: 40px;
+  pointer-events: none;
+}
+
+.reveal-btn {
+  position: absolute;
+  display: none;
+  width: auto;
+  height: 16px;
+  font-size: 9px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  box-sizing: border-box;
+  min-width: 40px;
+  text-align: center;
+  bottom: 40%; /* Position directly above the character */
+  left: 40%;
+  transform: translateX(-50%);
+  z-index: 101;
+  padding: 0;
+  line-height: 16px;
+}
+
+.character-wrapper:hover .hover-info {
+  opacity: 1;
+  visibility: visible;
+}
+
+.pinyin-tooltip {
+  display: block;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.meaning-tooltip {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  max-width: 200px;
+  word-wrap: break-word;
+}
+
+
+/* Show the button only when hovering over the character wrapper */
+.character-wrapper:hover .reveal-btn {
+  display: block;
+}
+
+.reveal-btn:hover {
+  background-color: #45a049;
+}
+
+.line-break {
+  display: block;
+  height: 1em;
+}
+
+.space-char {
+  display: inline-block;
+  width: 0.5em;
+}
+
+/* Audio Controls */
+.audio-controls {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.control-buttons {
+  margin-bottom: 15px;
+}
+
+.control-buttons button {
+  margin-right: 10px;
+  padding: 8px 15px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+}
+
+.control-buttons button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.control-buttons button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.playback-controls {
+  margin-bottom: 15px;
+}
+
+.playback-controls label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.playback-controls select {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+}
+
+.progress-slider {
+  flex: 1;
+  margin-right: 15px;
+}
+
+.time-display {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Text Display */
+.text-display {
+  line-height: 1.6;
+  font-size: 18px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  min-height: 200px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  text-align: left; /* Changed from center to left alignment */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .app {
+    padding: 1rem;
+  }
+  
+  .text-display {
+    font-size: 20px;
+    padding: 15px;
+  }
+  
+  .audio-controls {
+    padding: 15px;
+  }
+  
+  .hover-info {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+  
+  .meaning-tooltip {
+    max-width: 150px;
+    font-size: 11px;
+  }
+}
