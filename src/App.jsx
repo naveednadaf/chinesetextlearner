@@ -46,7 +46,7 @@ function App() {
   useEffect(() => {
     console.log("Attempting to load dictionary...");
     setDictLoading(true);
-    fetch("/src/assets/cedict_ts.u8")
+    fetch("/cedict_ts.u8")
       .then(res => {
         console.log("Fetch response status:", res.status);
         return res.text();
