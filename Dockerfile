@@ -1,5 +1,5 @@
 # Use Node.js official image as base
-FROM node:18-alpine
+FROM node:18-alpine AS builder
 
 # Set working directory
 WORKDIR /app
@@ -19,11 +19,14 @@ RUN npm run build
 # Production stage
 FROM nginx:alpine
 
-# Copy built files from the previous stage
-COPY --from=0 /app/dist /usr/share/nginx/html
+# Copy built files from the builder stage
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Expose port
-EXPOSE 80
+# Copy custom nginx configuration
+COPY --from=builder /app/nginx.conf /etc/nginx/nginx.conf
+
+# Expose port 9021
+EXPOSE 9021
 
 # Start Nginx server
 CMD ["nginx", "-g", "daemon off;"]
