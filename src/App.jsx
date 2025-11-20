@@ -13,6 +13,7 @@ function App() {
   const [revealedMeanings, setRevealedMeanings] = useState({});
   const [dict, setDict] = useState({});
   const [dictLoading, setDictLoading] = useState(true);
+  const [alwaysShowEnglish, setAlwaysShowEnglish] = useState(false);
 
   const synthRef = useRef(null);
   const utteranceRef = useRef(null);
@@ -369,6 +370,16 @@ function App() {
           cols="50"
         />
         <button onClick={handleConvert} disabled={dictLoading}>Convert to Pinyin</button>
+        <div className="toggle-container">
+          <label>
+            <input
+              type="checkbox"
+              checked={alwaysShowEnglish}
+              onChange={(e) => setAlwaysShowEnglish(e.target.checked)}
+            />
+            Always show English translations
+          </label>
+        </div>
       </div>
 
       {processedText.length > 0 && (
@@ -442,14 +453,14 @@ function App() {
                         {item.pinyin && item.pinyin !== 'Pinyin error' && (
                           <span className="pinyin-tooltip">{item.pinyin}</span>
                         )}
-                        {(revealedMeanings[item.id]) && item.meaning && item.meaning !== 'Definition not available' && item.meaning !== 'Processing error' && (
+                        {(revealedMeanings[item.id] || alwaysShowEnglish) && item.meaning && item.meaning !== 'Definition not available' && item.meaning !== 'Processing error' && (
                           <span className="meaning-tooltip">
                             {item.meaning}
                           </span>
                         )}
                       </span>
                     )}
-                    {item.isChinese && item.meaning && item.meaning !== 'Definition not available' && item.meaning !== 'Processing error' && !revealedMeanings[item.id] && (
+                    {item.isChinese && item.meaning && item.meaning !== 'Definition not available' && item.meaning !== 'Processing error' && !revealedMeanings[item.id] && !alwaysShowEnglish && (
                       <button 
                         className="reveal-btn"
                         onClick={() => revealMeaning(item.id)}

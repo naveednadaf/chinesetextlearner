@@ -139,6 +139,25 @@ button:disabled {
   word-wrap: break-word;
 }
 
+.toggle-container {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-container label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+.toggle-container input[type="checkbox"] {
+  margin-right: 8px;
+  transform: scale(1.2);
+}
 
 /* Show the button only when hovering over the character wrapper */
 .character-wrapper:hover .reveal-btn {
@@ -259,4 +278,24 @@ button:disabled {
     max-width: 150px;
     font-size: 11px;
   }
+}
+
+.toggle-container {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-container label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+.toggle-container input[type="checkbox"] {
+  margin-right: 8px;
+  transform: scale(1.2);
 }
